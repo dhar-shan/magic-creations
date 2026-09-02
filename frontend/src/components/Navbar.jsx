@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Menu, X, ArrowUpRight } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 
@@ -13,6 +13,19 @@ const navLinks = [
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   const closeMenu = () => {
     setMenuOpen(false)
@@ -20,18 +33,30 @@ function Navbar() {
 
   return (
     <>
-      <header className="absolute left-0 right-0 top-0 z-50">
+      <header
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "border-b border-white/10 bg-[#050505]/85 backdrop-blur-md"
+            : "bg-transparent"
+        }`}
+      >
         <div className="mx-auto flex max-w-[1800px] items-center justify-between px-6 py-6 lg:px-12 lg:py-8">
 
           {/* Logo */}
           <a
-            href="#"
-            className="relative z-10 text-lg font-semibold tracking-[-0.04em] text-white"
+            href="#hero"
+            className="group relative z-10 flex items-baseline leading-none"
           >
-            MAGIC
-            <span className="text-white/40">
+            <span className="text-2xl font-bold tracking-[-0.06em] text-white transition-all duration-300 sm:text-3xl lg:text-4xl group-hover:tracking-[-0.04em]">
+              MAGIC
+            </span>
+
+            <span className="ml-1 text-2xl font-semibold tracking-[-0.06em] text-white/45 transition-all duration-300 sm:text-3xl lg:text-4xl group-hover:text-white/70">
               CREATIONS
             </span>
+
+            {/* Subtle highlight line */}
+            <span className="absolute -bottom-2 left-0 h-px w-0 bg-white/70 transition-all duration-500 group-hover:w-full" />
           </a>
 
           {/* Desktop navigation */}
@@ -49,7 +74,7 @@ function Navbar() {
 
             <a
               href="#contact"
-              className="group ml-4 flex items-center gap-2 border border-white/20 px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-white hover:text-black"
+              className="group ml-4 flex items-center gap-2 border border-white/20 px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-white hover:text-black"
             >
               Contact
 
@@ -66,7 +91,7 @@ function Navbar() {
           <button
             type="button"
             onClick={() => setMenuOpen((current) => !current)}
-            className="relative z-10 flex h-11 w-11 items-center justify-center border border-white/20 text-white lg:hidden"
+            className="relative z-50 flex h-11 w-11 items-center justify-center border border-white/20 text-white lg:hidden"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
@@ -89,7 +114,6 @@ function Navbar() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 bg-[#050505] lg:hidden"
           >
-
             <motion.nav
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -97,7 +121,6 @@ function Navbar() {
               transition={{ duration: 0.3 }}
               className="flex h-full flex-col justify-center px-6"
             >
-
               <div className="flex flex-col">
 
                 {navLinks.map((link, index) => (
@@ -129,9 +152,7 @@ function Navbar() {
                 </a>
 
               </div>
-
             </motion.nav>
-
           </motion.div>
         )}
       </AnimatePresence>

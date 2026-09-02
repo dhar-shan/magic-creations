@@ -2,9 +2,11 @@ import { motion } from "motion/react"
 
 function Hero() {
     return (
-        <section className="relative flex min-h-screen items-center overflow-hidden bg-[#050505]">
+        <section
+            id="hero"
+            className="relative flex min-h-screen items-center overflow-hidden bg-[#050505]"
+        >
 
-            {/* Background atmosphere */}
             {/* Background atmosphere */}
             <div className="absolute inset-0 overflow-hidden">
 
@@ -26,16 +28,16 @@ function Hero() {
             </div>
 
             {/* Hero content */}
-            <div className="relative z-10 mx-auto w-full max-w-7xl px-8 pt-24 lg:px-12">
+            <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-28 sm:px-8 lg:px-12 lg:pt-32">
 
-                <div className="max-w-5xl">
+                <div className="max-w-4xl">
 
                     {/* Category */}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="mb-8 text-xs font-medium uppercase tracking-[0.35em] text-white/50"
+                        className="mb-7 text-xs font-medium uppercase tracking-[0.35em] text-white/50"
                     >
                         VFX • POST PRODUCTION • 3D • AI • MOTION DESIGN
                     </motion.p>
@@ -45,18 +47,19 @@ function Hero() {
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.2 }}
-                        className="max-w-5xl text-6xl font-semibold leading-[0.95] tracking-[-0.04em] sm:text-7xl md:text-8xl lg:text-[9rem]"
+                        className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[7rem]"
                     >
                         Where Creativity
                         <br />
                         Meets Precision.
                     </motion.h1>
 
+                    {/* Description */}
                     <motion.p
                         initial={{ opacity: 0, y: 25 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="mt-10 max-w-2xl text-base leading-relaxed text-white/60 md:text-lg"
+                        className="mt-8 max-w-xl text-base leading-relaxed text-white/60 md:text-lg"
                     >
                         Bringing imagination to life through VFX and digital creativity.
                         From Roto and Compositing to 3D, AI and Motion Design,
@@ -68,7 +71,7 @@ function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="mt-10 flex flex-wrap gap-4"
+                        className="mt-9 flex flex-wrap gap-4"
                     >
 
                         <a
@@ -94,7 +97,7 @@ function Hero() {
                 </div>
 
                 {/* Scroll indicator */}
-                <div className="absolute bottom-10 right-8 hidden items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/40 lg:flex">
+                <div className="absolute bottom-10 right-6 hidden items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/40 lg:right-12 lg:flex">
                     <span>Scroll</span>
                     <span className="h-px w-12 bg-white/20" />
                     <span>↓</span>
