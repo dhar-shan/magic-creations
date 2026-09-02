@@ -38,25 +38,29 @@ function Team() {
   return (
     <section
       id="team"
-      className="relative overflow-hidden bg-[#050505] px-6 py-32 text-white sm:py-40 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-[#050505] px-6 py-24 text-white sm:py-32 lg:px-12 lg:py-40"
     >
       <div className="mx-auto max-w-[1600px]">
 
-        <div className="mb-20 grid gap-10 lg:grid-cols-12">
+        {/* Header */}
+        <div className="mb-16 grid gap-10 lg:mb-20 lg:grid-cols-12">
 
           <div className="lg:col-span-8">
 
-            <div className="mb-8 flex items-center gap-4">
-              <span className="h-px w-10 bg-white/30" />
+            {/* Section label */}
+            <div className="mb-6 flex items-center gap-4">
+              <span className="h-px w-8 bg-white/30 sm:w-10" />
 
-              <p className="text-xs uppercase tracking-[0.3em] text-white/40">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 sm:text-xs">
                 Our Team
               </p>
             </div>
 
-            <h2 className="text-5xl font-medium leading-none tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[7rem]">
+            {/* Heading */}
+            <h2 className="text-4xl font-medium leading-[0.98] tracking-[-0.04em] sm:text-5xl md:text-6xl lg:text-7xl">
               Creative minds.
               <br />
+
               <span className="text-white/30">
                 Technical precision.
               </span>
@@ -64,8 +68,9 @@ function Team() {
 
           </div>
 
+          {/* Description */}
           <div className="flex items-end lg:col-span-4">
-            <p className="max-w-md text-sm leading-7 text-white/50">
+            <p className="max-w-md text-sm leading-7 text-white/45">
               A scalable production network brings together creative and
               technical capabilities across different stages of production.
             </p>
@@ -73,6 +78,7 @@ function Team() {
 
         </div>
 
+        {/* Team groups */}
         <div className="border-t border-white/10">
 
           {teamGroups.map((group, index) => (
@@ -85,24 +91,28 @@ function Team() {
                 duration: 0.6,
                 delay: index * 0.07,
               }}
-              className="group grid gap-6 border-b border-white/10 py-8 lg:grid-cols-12 lg:items-center lg:py-10"
+              className="group grid gap-5 border-b border-white/10 py-7 transition-colors duration-300 hover:border-white/20 sm:py-8 lg:grid-cols-12 lg:items-center lg:gap-6 lg:py-10"
             >
 
-              <span className="text-xs tracking-[0.25em] text-white/30 lg:col-span-1">
+              {/* Number */}
+              <span className="text-[10px] tracking-[0.25em] text-white/30 lg:col-span-1">
                 {group.number}
               </span>
 
-              <h3 className="text-2xl font-medium tracking-tight text-white/70 transition-all duration-300 group-hover:translate-x-2 group-hover:text-white md:text-3xl lg:col-span-5">
+              {/* Title */}
+              <h3 className="text-xl font-medium tracking-tight text-white/75 transition-all duration-300 group-hover:translate-x-2 group-hover:text-white sm:text-2xl md:text-3xl lg:col-span-5">
                 {group.title}
               </h3>
 
+              {/* Description */}
               <p className="max-w-lg text-sm leading-7 text-white/40 transition-colors duration-300 group-hover:text-white/60 lg:col-span-5">
                 {group.description}
               </p>
 
+              {/* Arrow */}
               <div className="hidden justify-end lg:col-span-1 lg:flex">
                 <ArrowUpRight
-                  size={21}
+                  size={20}
                   strokeWidth={1.2}
                   className="text-white/20 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white"
                 />

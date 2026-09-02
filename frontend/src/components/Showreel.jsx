@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Play, X } from "lucide-react"
+import Demo from "../assets/Demo.mp4"
 
 function Showreel() {
   const [isOpen, setIsOpen] = useState(false)
@@ -9,26 +10,28 @@ function Showreel() {
     <>
       <section
         id="showreel"
-        className="relative overflow-hidden bg-[#050505] px-6 py-32 text-white sm:py-40 lg:px-12 lg:py-48"
+        className="relative overflow-hidden bg-[#050505] px-6 py-28 text-white sm:py-36 lg:px-12 lg:py-44"
       >
         <div className="mx-auto max-w-[1600px]">
 
           {/* Header */}
-          <div className="mb-20 grid gap-10 lg:grid-cols-12">
+          <div className="mb-16 grid gap-10 lg:mb-20 lg:grid-cols-12">
 
             <div className="lg:col-span-8">
 
-              <div className="mb-8 flex items-center gap-4">
+              <div className="mb-7 flex items-center gap-4">
                 <span className="h-px w-10 bg-white/30" />
 
-                <p className="text-xs uppercase tracking-[0.3em] text-white/40">
+                <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">
                   Showreel
                 </p>
               </div>
 
-              <h2 className="text-5xl font-medium leading-none tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[7rem]">
+              {/* Main heading */}
+              <h2 className="text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl md:text-6xl lg:text-[6rem]">
                 A glimpse into
                 <br />
+
                 <span className="text-white/30">
                   what we create.
                 </span>
@@ -37,7 +40,7 @@ function Showreel() {
             </div>
 
             <div className="flex items-end lg:col-span-4">
-              <p className="max-w-md text-sm leading-7 text-white/50">
+              <p className="max-w-md text-sm leading-7 text-white/50 md:text-base">
                 Explore a selection of visual work across VFX, compositing,
                 3D, motion design and digital production.
               </p>
@@ -71,10 +74,10 @@ function Showreel() {
                 transition={{
                   duration: 0.4,
                 }}
-                className="flex h-20 w-20 items-center justify-center rounded-full border border-white/30 bg-white/10 backdrop-blur-md md:h-28 md:w-28"
+                className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-white/10 backdrop-blur-md sm:h-20 sm:w-20 md:h-24 md:w-24"
               >
                 <Play
-                  size={24}
+                  size={22}
                   strokeWidth={1.5}
                   fill="white"
                   className="ml-1 text-white md:h-7 md:w-7"
@@ -84,19 +87,19 @@ function Showreel() {
             </div>
 
             {/* Bottom metadata */}
-            <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between bg-linear-to-t from-black/70 to-transparent p-6 pt-24 md:p-10 md:pt-32">
+            <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between bg-linear-to-t from-black/80 via-black/30 to-transparent p-5 pt-24 sm:p-7 sm:pt-28 md:p-10 md:pt-32">
 
               <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-white/40">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 sm:text-xs">
                   MagicCreations
                 </p>
 
-                <p className="mt-2 text-lg font-medium">
+                <p className="mt-2 text-base font-medium sm:text-lg">
                   Showreel
                 </p>
               </div>
 
-              <span className="text-xs tracking-[0.2em] text-white/40">
+              <span className="text-[10px] tracking-[0.2em] text-white/40 sm:text-xs">
                 2026
               </span>
 
@@ -114,14 +117,14 @@ function Showreel() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 p-6"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 p-4 sm:p-6"
           >
 
             {/* Close */}
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="absolute right-6 top-6 z-10 flex h-12 w-12 items-center justify-center border border-white/20 text-white transition-colors hover:bg-white hover:text-black"
+              className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center border border-white/20 text-white transition-colors hover:bg-white hover:text-black sm:right-6 sm:top-6 sm:h-12 sm:w-12"
               aria-label="Close showreel"
             >
               <X size={20} strokeWidth={1.5} />
@@ -133,14 +136,22 @@ function Showreel() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ duration: 0.4 }}
-              className="aspect-video w-full max-w-6xl bg-[#111]"
+              className="aspect-video w-full max-w-6xl overflow-hidden bg-[#111]"
             >
 
-              <div className="flex h-full items-center justify-center">
-                <p className="text-xs uppercase tracking-[0.3em] text-white/30">
-                  Showreel Video
-                </p>
-              </div>
+              <video
+                className="h-full w-full object-contain"
+                controls
+                autoPlay
+                playsInline
+              >
+                <source
+                  src={Demo}
+                  type="video/mp4"
+                />
+
+                Your browser does not support the video tag.
+              </video>
 
             </motion.div>
 

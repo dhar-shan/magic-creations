@@ -44,37 +44,45 @@ function WhyMagicCreations() {
   return (
     <section
       id="workflow"
-      className="relative overflow-hidden bg-[#050505] px-6 py-32 text-white sm:py-40 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-[#050505] px-6 py-28 text-white sm:py-32 lg:px-12 lg:py-40"
     >
       <div className="mx-auto max-w-[1600px]">
 
         {/* Section heading */}
-        <div className="mb-24 grid gap-10 lg:grid-cols-12">
+        <div className="mb-16 grid gap-10 lg:mb-20 lg:grid-cols-12">
 
           <div className="lg:col-span-8">
-            <div className="mb-8 flex items-center gap-4">
+
+            {/* Section label */}
+            <div className="mb-6 flex items-center gap-4">
               <span className="h-px w-10 bg-white/30" />
 
-              <p className="text-xs uppercase tracking-[0.3em] text-white/40">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 sm:text-xs">
                 Why MagicCreations
               </p>
             </div>
 
-            <h2 className="text-5xl font-medium leading-none tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[7rem]">
+            {/* Heading */}
+            <h2 className="text-4xl font-medium leading-[0.98] tracking-[-0.04em] sm:text-5xl md:text-6xl lg:text-7xl">
               Built for
               <br />
+
               <span className="text-white/30">
                 production.
               </span>
             </h2>
+
           </div>
 
+          {/* Description */}
           <div className="flex items-end lg:col-span-4">
-            <p className="max-w-md text-sm leading-7 text-white/50">
+
+            <p className="max-w-md text-sm leading-7 text-white/45">
               Creative production is more than the final frame. It is the
               people, processes and communication behind every successful
               delivery.
             </p>
+
           </div>
 
         </div>
@@ -85,48 +93,86 @@ function WhyMagicCreations() {
           {strengths.map((strength, index) => (
             <motion.div
               key={strength.number}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{
-                duration: 0.7,
+                duration: 0.65,
                 delay: index * 0.06,
               }}
-              className="group grid gap-6 border-b border-white/10 py-8 lg:grid-cols-12 lg:items-center lg:py-10"
+              className="group relative border-b border-white/10"
             >
 
-              {/* Number */}
-              <div className="lg:col-span-1">
-                <span className="text-xs tracking-[0.25em] text-white/30">
-                  {strength.number}
-                </span>
-              </div>
+              {/* Hover background */}
+              <div className="pointer-events-none absolute inset-0 bg-white/2.5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-              {/* Title */}
-              <div className="lg:col-span-5">
-                <h3 className="text-2xl font-medium tracking-tight text-white/70 transition-all duration-300 group-hover:translate-x-2 group-hover:text-white md:text-3xl">
-                  {strength.title}
-                </h3>
-              </div>
+              {/* Animated side line */}
+              <div className="absolute bottom-0 left-0 top-0 w-px origin-top scale-y-0 bg-white/70 transition-transform duration-500 group-hover:scale-y-100" />
 
-              {/* Description */}
-              <div className="lg:col-span-5">
-                <p className="max-w-lg text-sm leading-7 text-white/40 transition-colors duration-300 group-hover:text-white/60">
-                  {strength.description}
-                </p>
-              </div>
+              <div className="relative grid gap-5 py-7 sm:gap-6 sm:py-8 lg:grid-cols-12 lg:items-center lg:gap-8 lg:py-10">
 
-              {/* Arrow */}
-              <div className="hidden justify-end lg:col-span-1 lg:flex">
-                <ArrowUpRight
-                  size={22}
-                  strokeWidth={1.2}
-                  className="text-white/20 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white"
-                />
+                {/* Number */}
+                <div className="lg:col-span-1">
+                  <span className="text-[10px] tracking-[0.25em] text-white/30 transition-colors duration-300 group-hover:text-white/60 sm:text-xs">
+                    {strength.number}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <div className="lg:col-span-5">
+
+                  <h3 className="text-xl font-medium leading-tight tracking-[-0.03em] text-white/65 transition-all duration-300 group-hover:translate-x-2 group-hover:text-white sm:text-2xl md:text-3xl">
+                    {strength.title}
+                  </h3>
+
+                </div>
+
+                {/* Description */}
+                <div className="lg:col-span-5">
+
+                  <p className="max-w-lg text-sm leading-7 text-white/40 transition-all duration-300 group-hover:text-white/60">
+                    {strength.description}
+                  </p>
+
+                </div>
+
+                {/* Arrow */}
+                <div className="absolute right-0 top-7 sm:top-8 lg:static lg:col-span-1 lg:flex lg:justify-end">
+
+                  <div className="flex h-9 w-9 items-center justify-center border border-white/10 text-white/25 transition-all duration-300 group-hover:border-white/30 group-hover:bg-white group-hover:text-black">
+
+                    <ArrowUpRight
+                      size={17}
+                      strokeWidth={1.3}
+                      className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+
+                  </div>
+
+                </div>
+
               </div>
 
             </motion.div>
           ))}
+
+        </div>
+
+        {/* Bottom detail */}
+        <div className="mt-8 flex items-center justify-between text-[10px] uppercase tracking-[0.25em] text-white/20">
+
+          <span>
+            MagicCreations
+          </span>
+
+          <div className="flex items-center gap-3">
+            <span className="hidden sm:block">
+              Built for creative production
+            </span>
+
+            <span className="h-px w-8 bg-white/15" />
+            <span>06</span>
+          </div>
 
         </div>
 

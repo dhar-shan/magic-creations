@@ -1,258 +1,180 @@
-import { useState } from "react"
-import { ArrowUpRight, Check } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
+import { motion } from "motion/react"
 
 function Contact() {
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    setSubmitted(true)
-  }
-
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-white px-6 py-32 text-black sm:py-40 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-white px-6 py-28 text-black sm:px-8 sm:py-36 lg:px-12 lg:py-44"
     >
       <div className="mx-auto max-w-[1600px]">
 
         {/* Heading */}
-        <div className="mb-20 grid gap-10 lg:grid-cols-12">
+        <div className="mb-16 grid gap-10 lg:mb-20 lg:grid-cols-12">
 
           <div className="lg:col-span-8">
 
-            <div className="mb-8 flex items-center gap-4">
+            {/* Section label */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-7 flex items-center gap-4"
+            >
               <span className="h-px w-10 bg-black/30" />
 
-              <p className="text-xs uppercase tracking-[0.3em] text-black/40">
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-black/40">
                 Contact
               </p>
-            </div>
+            </motion.div>
 
-            <h2 className="text-5xl font-medium leading-[0.98] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[7rem]">
+            {/* Heading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl md:text-6xl lg:text-[6rem]"
+            >
               Have a project
               <br />
+
               <span className="text-black/25">
                 in mind?
               </span>
-            </h2>
+            </motion.h2>
 
           </div>
 
-          <div className="flex items-end lg:col-span-4">
-            <p className="max-w-md text-sm leading-7 text-black/50">
-              Tell us a little about your project, production requirements
-              and how we can support your team.
+          {/* Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="flex items-end lg:col-span-4"
+          >
+            <p className="max-w-md text-sm leading-7 text-black/50 md:text-base">
+              Let's discuss how MagicCreations can support your production.
+              Whether you need VFX, compositing, 3D, AI or motion design,
+              we're ready to understand your requirements.
             </p>
-          </div>
+          </motion.div>
 
         </div>
 
-        {/* Contact layout */}
-        <div className="grid gap-16 border-t border-black/10 pt-16 lg:grid-cols-12">
+        {/* Contact information */}
+        <div className="border-t border-black/10 pt-12 sm:pt-16">
 
-          {/* Left information */}
-          <div className="lg:col-span-4">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
+            className="grid gap-10 md:grid-cols-2 lg:grid-cols-4"
+          >
 
-            <p className="text-xs uppercase tracking-[0.25em] text-black/40">
-              Start a conversation
-            </p>
+            {/* Founder */}
+            <div className="border-l border-black/10 pl-5">
+              <p className="text-xs uppercase tracking-[0.25em] text-black/40">
+                Founder
+              </p>
 
-            <div className="mt-10 space-y-8">
+              <p className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
+                Samuvel V
+              </p>
 
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-black/30">
-                  Location
-                </p>
-
-                <p className="mt-2 text-lg">
-                  Bangalore, India
-                </p>
-              </div>
-
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-black/30">
-                  Availability
-                </p>
-
-                <p className="mt-2 text-lg">
-                  Production Partnerships
-                </p>
-              </div>
-
+              <p className="mt-2 text-sm text-black/40">
+                Founder, MagicCreations
+              </p>
             </div>
 
-          </div>
+            {/* Phone */}
+            <div className="border-l border-black/10 pl-5">
+              <p className="text-xs uppercase tracking-[0.25em] text-black/40">
+                Phone
+              </p>
 
-          {/* Form */}
-          <div className="lg:col-span-8">
-
-            {submitted ? (
-              <div className="flex min-h-125 flex-col items-center justify-center border border-black/10 p-10 text-center">
-
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-black/20">
-                  <Check size={24} strokeWidth={1.5} />
-                </div>
-
-                <h3 className="mt-8 text-3xl font-medium tracking-tight">
-                  Thanks for reaching out.
-                </h3>
-
-                <p className="mt-4 max-w-md text-sm leading-7 text-black/50">
-                  Your message has been captured for this frontend prototype.
-                  We'll connect the form to the Django backend later.
-                </p>
-
-              </div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-10"
+              <a
+                href="tel:8553158510"
+                className="group mt-4 inline-flex items-center gap-3 text-lg font-medium tracking-tight transition-opacity hover:opacity-60 sm:text-xl"
               >
+                8553158510
 
-                <div className="grid gap-10 md:grid-cols-2">
+                <ArrowUpRight
+                  size={18}
+                  strokeWidth={1.4}
+                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                />
+              </a>
+            </div>
 
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="text-xs uppercase tracking-[0.2em] text-black/40"
-                    >
-                      Name
-                    </label>
+            {/* Email */}
+            <div className="border-l border-black/10 pl-5">
+              <p className="text-xs uppercase tracking-[0.25em] text-black/40">
+                Email
+              </p>
 
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      placeholder="Your name"
-                      className="mt-3 w-full border-b border-black/20 bg-transparent py-4 text-lg outline-none transition-colors placeholder:text-black/25 focus:border-black"
-                    />
-                  </div>
+              <a
+                href="mailto:magiccreations9397@gmail.com"
+                className="group mt-4 inline-flex items-center gap-3 break-all text-lg font-medium tracking-tight transition-opacity hover:opacity-60 sm:text-xl"
+              >
+                magiccreations9397@gmail.com
 
-                  <div>
-                    <label
-                      htmlFor="company"
-                      className="text-xs uppercase tracking-[0.2em] text-black/40"
-                    >
-                      Company
-                    </label>
+                <ArrowUpRight
+                  size={18}
+                  strokeWidth={1.4}
+                  className="hidden shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 sm:block"
+                />
+              </a>
+            </div>
 
-                    <input
-                      id="company"
-                      name="company"
-                      type="text"
-                      placeholder="Company / Studio"
-                      className="mt-3 w-full border-b border-black/20 bg-transparent py-4 text-lg outline-none transition-colors placeholder:text-black/25 focus:border-black"
-                    />
-                  </div>
+            {/* Location */}
+            <div className="border-l border-black/10 pl-5">
+              <p className="text-xs uppercase tracking-[0.25em] text-black/40">
+                Location
+              </p>
 
-                </div>
+              <p className="mt-4 text-lg font-medium tracking-tight sm:text-xl">
+                Bangalore,
+                <br />
+                Karnataka, India
+              </p>
+            </div>
 
-                <div className="grid gap-10 md:grid-cols-2">
-
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="text-xs uppercase tracking-[0.2em] text-black/40"
-                    >
-                      Email
-                    </label>
-
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="you@company.com"
-                      className="mt-3 w-full border-b border-black/20 bg-transparent py-4 text-lg outline-none transition-colors placeholder:text-black/25 focus:border-black"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="project"
-                      className="text-xs uppercase tracking-[0.2em] text-black/40"
-                    >
-                      Project Type
-                    </label>
-
-                    <select
-                      id="project"
-                      name="project"
-                      required
-                      defaultValue=""
-                      className="mt-3 w-full border-b border-black/20 bg-transparent py-4 text-lg outline-none focus:border-black"
-                    >
-                      <option value="" disabled>
-                        Select a service
-                      </option>
-
-                      <option value="vfx">
-                        VFX
-                      </option>
-
-                      <option value="3d">
-                        3D
-                      </option>
-
-                      <option value="compositing">
-                        Compositing
-                      </option>
-
-                      <option value="motion">
-                        Motion Graphics
-                      </option>
-
-                      <option value="ai">
-                        AI
-                      </option>
-
-                      <option value="other">
-                        Other
-                      </option>
-                    </select>
-                  </div>
-
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="text-xs uppercase tracking-[0.2em] text-black/40"
-                  >
-                    Tell us about the project
-                  </label>
-
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows="5"
-                    placeholder="Project details, timeline, scope..."
-                    className="mt-3 w-full resize-none border-b border-black/20 bg-transparent py-4 text-lg outline-none transition-colors placeholder:text-black/25 focus:border-black"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="group inline-flex items-center gap-4 border border-black px-7 py-4 text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-black hover:text-white"
-                >
-                  Send Enquiry
-
-                  <ArrowUpRight
-                    size={18}
-                    strokeWidth={1.3}
-                    className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                  />
-                </button>
-
-              </form>
-            )}
-
-          </div>
+          </motion.div>
 
         </div>
+
+        {/* Bottom call to action */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mt-16 flex flex-col justify-between gap-8 border-t border-black/10 pt-8 sm:flex-row sm:items-center"
+        >
+          <p className="text-xs uppercase tracking-[0.25em] text-black/40">
+            Start a conversation
+          </p>
+
+          <a
+            href="mailto:magiccreations9397@gmail.com"
+            className="group inline-flex items-center gap-4 self-start border border-black px-7 py-4 text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-black hover:text-white sm:self-auto"
+          >
+            Contact Samuvel
+
+            <ArrowUpRight
+              size={18}
+              strokeWidth={1.3}
+              className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+            />
+          </a>
+        </motion.div>
 
       </div>
     </section>
