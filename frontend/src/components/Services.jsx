@@ -9,7 +9,7 @@ function Services() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden bg-[#050505] px-6 py-28 text-white sm:px-8 sm:py-36 lg:px-12 lg:py-44"
+      className="relative overflow-hidden bg-[#050505]/90 px-6 py-28 text-white sm:px-8 sm:py-36 lg:px-12 lg:py-44"
     >
       <div className="mx-auto max-w-[1600px]">
 

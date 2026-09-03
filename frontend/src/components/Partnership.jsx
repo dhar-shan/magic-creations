@@ -5,12 +5,18 @@ function Partnership() {
   return (
     <section
       id="partnership"
-      className="relative overflow-hidden bg-[#050505] px-6 py-28 text-white sm:py-32 lg:px-12 lg:py-40"
+      className="relative overflow-hidden bg-[#050505]/70 px-6 py-28 text-white sm:py-32 lg:px-12 lg:py-40"
     >
-      <div className="mx-auto max-w-[1600px]">
+      {/* Subtle readability overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-[#050505]/20" />
+
+      {/* Section atmosphere */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(255,255,255,0.04),transparent_40%)]" />
+
+      <div className="relative z-10 mx-auto max-w-[1600px]">
 
         {/* Partnership container */}
-        <div className="group relative overflow-hidden border border-white/10 px-6 py-16 sm:px-10 sm:py-20 md:px-14 md:py-24 lg:px-20 lg:py-28">
+        <div className="group relative overflow-hidden border border-white/10 bg-black/10 px-6 py-16 sm:px-10 sm:py-20 md:px-14 md:py-24 lg:px-20 lg:py-28">
 
           {/* Ambient background */}
           <motion.div
@@ -29,8 +35,9 @@ function Partnership() {
           {/* Background gradients */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.04),transparent_30%),radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.03),transparent_35%)]" />
 
-          {/* Subtle grid/detail lines */}
+          {/* Detail lines */}
           <div className="absolute inset-x-0 top-0 h-px bg-white/10" />
+
           <div className="absolute bottom-0 left-0 h-px w-0 bg-white/70 transition-all duration-700 group-hover:w-full" />
 
           {/* Content */}
@@ -56,7 +63,7 @@ function Partnership() {
             </h2>
 
             {/* Description */}
-            <p className="mt-8 max-w-xl text-sm leading-7 text-white/50 md:mt-10 md:text-base md:leading-8">
+            <p className="mt-8 max-w-xl text-sm leading-7 text-white/55 md:mt-10 md:text-base md:leading-8">
               Whether you need additional production capacity, specialist
               artists or end-to-end creative support, let's explore how
               MagicCreations can become part of your workflow.
@@ -88,7 +95,9 @@ function Partnership() {
 
           <div className="absolute bottom-6 right-6 hidden items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-white/20 sm:flex">
             <span>01</span>
+
             <span className="h-px w-8 bg-white/20" />
+
             <span>Partner With Us</span>
           </div>
 

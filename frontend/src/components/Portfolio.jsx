@@ -6,9 +6,15 @@ function Portfolio() {
   return (
     <section
       id="portfolio"
-      className="relative overflow-hidden bg-[#050505] px-6 py-28 text-white sm:py-32 lg:px-12 lg:py-40"
+      className="relative overflow-hidden bg-[#050505]/70 px-6 py-28 text-white sm:py-32 lg:px-12 lg:py-40"
     >
-      <div className="mx-auto max-w-[1600px]">
+      {/* Subtle readability overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-[#050505]/20" />
+
+      {/* Section atmosphere */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.04),transparent_40%)]" />
+
+      <div className="relative z-10 mx-auto max-w-[1600px]">
 
         {/* Header */}
         <div className="mb-16 flex flex-col justify-between gap-10 lg:mb-20 lg:flex-row lg:items-end">
@@ -37,7 +43,7 @@ function Portfolio() {
           </div>
 
           {/* Description */}
-          <p className="max-w-sm text-sm leading-7 text-white/45">
+          <p className="max-w-sm text-sm leading-7 text-white/50">
             A selection of work across visual effects, 3D, motion design,
             AI-assisted workflows and experimental creative production.
           </p>
@@ -66,7 +72,7 @@ function Portfolio() {
                   duration: 0.7,
                   delay: index * 0.08,
                 }}
-                className={`group relative overflow-hidden border border-white/10 bg-white/2 ${gridClass}`}
+                className={`group relative overflow-hidden border border-white/10 bg-black/30 backdrop-blur-[2px] ${gridClass}`}
               >
 
                 {/* Background visual */}
@@ -122,7 +128,7 @@ function Portfolio() {
                       {item.title}
                     </h3>
 
-                    <p className="mt-4 max-w-md text-sm leading-6 text-white/40 transition-colors duration-300 group-hover:text-white/60">
+                    <p className="mt-4 max-w-md text-sm leading-6 text-white/45 transition-colors duration-300 group-hover:text-white/65">
                       {item.description}
                     </p>
 

@@ -44,9 +44,15 @@ function WhyMagicCreations() {
   return (
     <section
       id="workflow"
-      className="relative overflow-hidden bg-[#050505] px-6 py-28 text-white sm:py-32 lg:px-12 lg:py-40"
+      className="relative overflow-hidden bg-[#050505]/80 px-6 py-28 text-white sm:py-32 lg:px-12 lg:py-40"
     >
-      <div className="mx-auto max-w-[1600px]">
+      {/* Section overlay for readability */}
+      <div className="pointer-events-none absolute inset-0 bg-black/10" />
+
+      {/* Subtle ambient atmosphere */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/2.5 blur-[140px]" />
+
+      <div className="relative z-10 mx-auto max-w-[1600px]">
 
         {/* Section heading */}
         <div className="mb-16 grid gap-10 lg:mb-20 lg:grid-cols-12">
@@ -130,7 +136,7 @@ function WhyMagicCreations() {
                 {/* Description */}
                 <div className="lg:col-span-5">
 
-                  <p className="max-w-lg text-sm leading-7 text-white/40 transition-all duration-300 group-hover:text-white/60">
+                  <p className="max-w-lg text-sm leading-7 text-white/40 transition-colors duration-300 group-hover:text-white/60">
                     {strength.description}
                   </p>
 
@@ -166,12 +172,15 @@ function WhyMagicCreations() {
           </span>
 
           <div className="flex items-center gap-3">
+
             <span className="hidden sm:block">
               Built for creative production
             </span>
 
             <span className="h-px w-8 bg-white/15" />
+
             <span>06</span>
+
           </div>
 
         </div>

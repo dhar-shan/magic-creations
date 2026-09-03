@@ -14,9 +14,15 @@ function Industries() {
   return (
     <section
       id="industries"
-      className="relative overflow-hidden bg-white px-6 py-28 text-black sm:py-32 lg:px-12 lg:py-40"
+      className="relative overflow-hidden bg-white/82 px-6 py-28 text-black sm:py-32 lg:px-12 lg:py-40"
     >
-      <div className="mx-auto max-w-[1600px]">
+      {/* Subtle readability layer */}
+      <div className="pointer-events-none absolute inset-0 bg-white/20" />
+
+      {/* Subtle background atmosphere */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(0,0,0,0.04),transparent_45%)]" />
+
+      <div className="relative z-10 mx-auto max-w-[1600px]">
 
         {/* Header */}
         <div className="mb-16 grid gap-10 lg:mb-20 lg:grid-cols-12">
@@ -47,7 +53,7 @@ function Industries() {
           {/* Description */}
           <div className="flex items-end lg:col-span-7">
 
-            <p className="max-w-xl text-sm leading-7 text-black/50 md:text-base md:leading-8">
+            <p className="max-w-xl text-sm leading-7 text-black/55 md:text-base md:leading-8">
               Supporting creative teams across different production
               environments, project scales and content requirements.
             </p>
@@ -73,7 +79,7 @@ function Industries() {
             >
 
               {/* Hover background */}
-              <div className="pointer-events-none absolute inset-0 bg-black/2.5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute inset-0 bg-black/[0.035] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               {/* Left animated line */}
               <div className="absolute bottom-0 left-0 top-0 w-px origin-top scale-y-0 bg-black transition-transform duration-500 group-hover:scale-y-100" />

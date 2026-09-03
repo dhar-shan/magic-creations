@@ -38,9 +38,12 @@ function Team() {
   return (
     <section
       id="team"
-      className="relative overflow-hidden bg-[#050505] px-6 py-24 text-white sm:py-32 lg:px-12 lg:py-40"
+      className="relative overflow-hidden bg-[#050505]/65 px-6 py-24 text-white sm:py-32 lg:px-12 lg:py-40"
     >
-      <div className="mx-auto max-w-[1600px]">
+      {/* Subtle readability overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-black/10" />
+
+      <div className="relative z-10 mx-auto max-w-[1600px]">
 
         {/* Header */}
         <div className="mb-16 grid gap-10 lg:mb-20 lg:grid-cols-12">

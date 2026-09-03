@@ -23,9 +23,16 @@ function Intro() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-[#050505] px-6 py-28 text-white sm:px-8 sm:py-36 lg:px-12 lg:py-44"
+      className="relative overflow-hidden bg-[#050505]/70 px-6 py-28 text-white sm:px-8 sm:py-36 lg:px-12 lg:py-44"
     >
-      <div className="mx-auto max-w-[1600px]">
+      {/* Subtle overlay for readability */}
+      <div className="pointer-events-none absolute inset-0 bg-[#050505]/20" />
+
+      {/* Subtle atmospheric gradient */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.04),transparent_40%)]" />
+
+      {/* Content */}
+      <div className="relative z-10 mx-auto max-w-[1600px]">
 
         {/* Section label */}
         <motion.div
@@ -79,7 +86,7 @@ function Intro() {
             }}
             className="flex items-end lg:col-span-3"
           >
-            <p className="max-w-sm text-sm leading-7 text-white/50 md:text-base">
+            <p className="max-w-sm text-sm leading-7 text-white/55 md:text-base">
               MagicCreations is a Bangalore-based VFX and digital production
               company built to support creative teams with quality,
               consistency, communication and scalable production.
