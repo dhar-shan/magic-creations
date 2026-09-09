@@ -69,22 +69,20 @@ function Services() {
 
                   {/* Number */}
                   <span
-                    className={`mr-5 w-8 shrink-0 text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 sm:mr-8 sm:text-xs ${
-                      isActive
+                    className={`mr-5 w-8 shrink-0 text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 sm:mr-8 sm:text-xs ${isActive
                         ? "text-white/60"
                         : "text-white/25 group-hover:text-white/50"
-                    }`}
+                      }`}
                   >
                     {service.number}
                   </span>
 
                   {/* Service name */}
                   <span
-                    className={`text-xl font-medium tracking-tight transition-all duration-300 sm:text-2xl md:text-3xl ${
-                      isActive
+                    className={`text-xl font-medium tracking-tight transition-all duration-300 sm:text-2xl md:text-3xl ${isActive
                         ? "translate-x-2 text-white"
                         : "text-white/40 group-hover:translate-x-2 group-hover:text-white"
-                    }`}
+                      }`}
                   >
                     {service.title}
                   </span>
@@ -93,11 +91,10 @@ function Services() {
                   <ArrowUpRight
                     size={19}
                     strokeWidth={1.4}
-                    className={`ml-auto shrink-0 transition-all duration-300 ${
-                      isActive
+                    className={`ml-auto shrink-0 transition-all duration-300 ${isActive
                         ? "translate-x-0 opacity-100"
                         : "-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
-                    }`}
+                      }`}
                   />
 
                 </button>
@@ -107,41 +104,91 @@ function Services() {
           </div>
 
           {/* Visual panel */}
-          <div className="relative min-h-105 overflow-hidden border border-white/10 bg-white/2 sm:min-h-120 lg:min-h-140">
+          <div className="relative min-h-105 overflow-hidden border border-white/10 bg-[#080808] sm:min-h-120 lg:min-h-140">
 
-            {/* Background atmosphere */}
-            <div className="absolute inset-0">
+            {/* Media */}
+            <AnimatePresence mode="wait">
 
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.10),transparent_35%)]" />
+              <motion.div
+                key={activeService.title}
+                initial={{ opacity: 0, scale: 1.03 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0"
+              >
 
-              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.04),transparent_45%,rgba(255,255,255,0.02))]" />
+                {/* Video */}
+                {activeService.video && (
+                  <video
+                    key={activeService.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 h-full w-full object-cover"
+                  >
+                    <source
+                      src={activeService.video}
+                      type="video/mp4"
+                    />
+                  </video>
+                )}
 
-            </div>
+                {/* Image */}
+                {!activeService.video && activeService.image && (
+                  <img
+                    src={activeService.image}
+                    alt={activeService.title}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                )}
+
+                {/* Fallback abstract visual */}
+                {!activeService.video && !activeService.image && (
+                  <div className="absolute inset-0">
+
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.10),transparent_35%)]" />
+
+                    <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.04),transparent_45%,rgba(255,255,255,0.02))]" />
+
+                  </div>
+                )}
+
+              </motion.div>
+
+            </AnimatePresence>
+
+
+            {/* Dark overlay for readability */}
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/85 via-black/25 to-black/10" />
+
 
             {/* Service content */}
             <AnimatePresence mode="wait">
 
               <motion.div
-                key={activeService.title}
+                key={`content-${activeService.title}`}
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -25 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.4, delay: 0.05 }}
                 className="relative z-10 flex min-h-105 flex-col justify-between p-6 sm:min-h-120 sm:p-8 md:p-10 lg:min-h-140 lg:p-12"
               >
 
                 {/* Top metadata */}
                 <div className="flex items-start justify-between">
 
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-white/30 sm:text-xs">
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-white/50 sm:text-xs">
                     {activeService.number}
                   </span>
 
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-white/30 sm:text-xs">
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-white/50 sm:text-xs">
                     MagicCreations
                   </span>
 
                 </div>
+
 
                 {/* Main service content */}
                 <div className="max-w-xl">
@@ -150,7 +197,7 @@ function Services() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="mb-5 text-xs uppercase tracking-[0.3em] text-white/30"
+                    className="mb-5 text-xs uppercase tracking-[0.3em] text-white/40"
                   >
                     Service
                   </motion.p>
@@ -159,18 +206,19 @@ function Services() {
                     {activeService.title}
                   </h3>
 
-                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/50 md:mt-6 md:text-base">
+                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/65 md:mt-6 md:text-base">
                     {activeService.description}
                   </p>
 
                 </div>
 
+
                 {/* Bottom indicator */}
                 <div className="flex items-center gap-4">
 
-                  <span className="h-px w-12 bg-white/20" />
+                  <span className="h-px w-12 bg-white/30" />
 
-                  <p className="text-[10px] uppercase tracking-[0.25em] text-white/30">
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-white/40">
                     Production Services
                   </p>
 
@@ -180,8 +228,9 @@ function Services() {
 
             </AnimatePresence>
 
+
             {/* Decorative line */}
-            <div className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-linear-to-r from-transparent via-white/20 to-transparent" />
+            <div className="pointer-events-none absolute bottom-0 left-0 z-20 h-px w-full bg-linear-to-r from-transparent via-white/30 to-transparent" />
 
           </div>
 
