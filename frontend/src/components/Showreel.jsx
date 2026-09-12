@@ -1,10 +1,21 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Play, X } from "lucide-react"
-import Demo from "../assets/Demo.mp4"
+import {
+  showreelCategories,
+  showreelVideos,
+} from "../data/showreel"
 
 function Showreel() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [activeCategory, setActiveCategory] = useState("All")
+  const [activeVideo, setActiveVideo] = useState(null)
+
+  const filteredVideos =
+    activeCategory === "All"
+      ? showreelVideos
+      : showreelVideos.filter(
+          (video) => video.category === activeCategory
+        )
 
   return (
     <>
@@ -15,7 +26,7 @@ function Showreel() {
         <div className="mx-auto max-w-[1600px]">
 
           {/* Header */}
-          <div className="mb-16 grid gap-10 lg:mb-20 lg:grid-cols-12">
+          <div className="mb-14 grid gap-10 lg:mb-20 lg:grid-cols-12">
 
             <div className="lg:col-span-8">
 
@@ -27,7 +38,6 @@ function Showreel() {
                 </p>
               </div>
 
-              {/* Main heading */}
               <h2 className="text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl md:text-6xl lg:text-[6rem]">
                 A glimpse into
                 <br />
@@ -40,123 +50,219 @@ function Showreel() {
             </div>
 
             <div className="flex items-end lg:col-span-4">
+
               <p className="max-w-md text-sm leading-7 text-white/50 md:text-base">
-                Explore a selection of visual work across VFX, compositing,
-                3D, motion design and digital production.
+                Explore selected work across visual effects, compositing,
+                3D, AI, motion design and digital production.
               </p>
+
             </div>
 
           </div>
 
-          {/* Video */}
-          <motion.button
-            type="button"
-            onClick={() => setIsOpen(true)}
-            whileHover="hover"
-            className="group relative block aspect-video w-full overflow-hidden border border-white/10 bg-white/2 text-left"
+          {/* Categories */}
+          <div className="mb-12 overflow-x-auto border-y border-white/10">
+
+            <div className="flex min-w-max">
+
+              {showreelCategories.map((category) => {
+                const isActive = activeCategory === category
+
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => setActiveCategory(category)}
+                    className={`relative px-5 py-5 text-[10px] font-medium uppercase tracking-[0.25em] transition-colors duration-300 sm:px-7 ${
+                      isActive
+                        ? "text-white"
+                        : "text-white/30 hover:text-white/70"
+                    }`}
+                  >
+                    {category}
+
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-category"
+                        className="absolute bottom-0 left-0 right-0 h-px bg-white"
+                      />
+                    )}
+                  </button>
+                )
+              })}
+
+            </div>
+
+          </div>
+
+          {/* Video grid */}
+          <motion.div
+            layout
+            className="grid gap-5 md:grid-cols-2"
           >
 
-            {/* Placeholder visual */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(255,255,255,0.12),transparent_35%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.05),transparent_30%)]" />
+            <AnimatePresence mode="popLayout">
 
-            {/* Grain */}
-            <div className="absolute inset-0 opacity-[0.04] [background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22 opacity=%22.7%22/%3E%3C/svg%3E')]" />
+              {filteredVideos.map((video, index) => (
 
-            {/* Center play button */}
-            <div className="absolute inset-0 flex items-center justify-center">
+                <motion.button
+                  key={video.id}
+                  type="button"
+                  layout
+                  initial={{
+                    opacity: 0,
+                    y: 30,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -20,
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.05,
+                  }}
+                  onClick={() => setActiveVideo(video)}
+                  className="group relative aspect-video overflow-hidden border border-white/10 bg-[#111] text-left"
+                >
 
-              <motion.div
-                variants={{
-                  hover: {
-                    scale: 1.1,
-                  },
-                }}
-                transition={{
-                  duration: 0.4,
-                }}
-                className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-white/10 backdrop-blur-md sm:h-20 sm:w-20 md:h-24 md:w-24"
-              >
-                <Play
-                  size={22}
-                  strokeWidth={1.5}
-                  fill="white"
-                  className="ml-1 text-white md:h-7 md:w-7"
-                />
-              </motion.div>
+                  {/* Video preview */}
+                  <video
+                    src={video.video}
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+                    onMouseEnter={(event) => {
+                      event.currentTarget.play()
+                    }}
+                    onMouseLeave={(event) => {
+                      event.currentTarget.pause()
+                      event.currentTarget.currentTime = 0
+                    }}
+                  />
 
-            </div>
+                  {/* Dark overlay */}
+                  <div className="absolute inset-0 bg-black/35 transition-colors duration-500 group-hover:bg-black/20" />
 
-            {/* Bottom metadata */}
-            <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between bg-linear-to-t from-black/80 via-black/30 to-transparent p-5 pt-24 sm:p-7 sm:pt-28 md:p-10 md:pt-32">
+                  {/* Play button */}
+                  <div className="absolute inset-0 flex items-center justify-center">
 
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 sm:text-xs">
-                  MagicCreations
-                </p>
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-black/30 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:border-white/60 group-hover:bg-white group-hover:text-black">
+                      <Play
+                        size={18}
+                        fill="currentColor"
+                        className="ml-0.5"
+                      />
+                    </div>
 
-                <p className="mt-2 text-base font-medium sm:text-lg">
-                  Showreel
-                </p>
-              </div>
+                  </div>
 
-              <span className="text-[10px] tracking-[0.2em] text-white/40 sm:text-xs">
-                2026
-              </span>
+                  {/* Metadata */}
+                  <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black via-black/50 to-transparent p-5 pt-20 sm:p-7 sm:pt-24">
 
-            </div>
+                    <div className="flex items-end justify-between gap-5">
 
-          </motion.button>
+                      <div>
+
+                        <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-white/40">
+                          {video.category}
+                        </p>
+
+                        <h3 className="text-xl font-medium tracking-tight sm:text-2xl">
+                          {video.title}
+                        </h3>
+
+                        <p className="mt-2 max-w-md text-xs leading-6 text-white/40">
+                          {video.description}
+                        </p>
+
+                      </div>
+
+                      <span className="shrink-0 text-[10px] tracking-[0.2em] text-white/30">
+                        0{video.id}
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  {/* Bottom line */}
+                  <div className="absolute bottom-0 left-0 h-px w-0 bg-white transition-all duration-700 group-hover:w-full" />
+
+                </motion.button>
+
+              ))}
+
+            </AnimatePresence>
+
+          </motion.div>
 
         </div>
       </section>
 
       {/* Video Modal */}
       <AnimatePresence>
-        {isOpen && (
+
+        {activeVideo && (
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 p-4 sm:p-6"
+            onClick={() => setActiveVideo(null)}
           >
 
             {/* Close */}
             <button
               type="button"
-              onClick={() => setIsOpen(false)}
-              className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center border border-white/20 text-white transition-colors hover:bg-white hover:text-black sm:right-6 sm:top-6 sm:h-12 sm:w-12"
-              aria-label="Close showreel"
+              onClick={() => setActiveVideo(null)}
+              className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center border border-white/20 text-white transition-colors hover:bg-white hover:text-black sm:right-6 sm:top-6 sm:h-12 sm:w-12"
+              aria-label="Close video"
             >
               <X size={20} strokeWidth={1.5} />
             </button>
 
-            {/* Video container */}
+            {/* Video */}
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="aspect-video w-full max-w-6xl overflow-hidden bg-[#111]"
+              initial={{
+                scale: 0.95,
+                opacity: 0,
+              }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+              }}
+              exit={{
+                scale: 0.95,
+                opacity: 0,
+              }}
+              transition={{
+                duration: 0.4,
+              }}
+              className="relative aspect-video w-full max-w-6xl overflow-hidden bg-[#111]"
+              onClick={(event) => event.stopPropagation()}
             >
 
               <video
+                src={activeVideo.video}
                 className="h-full w-full object-contain"
                 controls
                 autoPlay
                 playsInline
-              >
-                <source
-                  src={Demo}
-                  type="video/mp4"
-                />
-
-                Your browser does not support the video tag.
-              </video>
+              />
 
             </motion.div>
 
           </motion.div>
+
         )}
+
       </AnimatePresence>
     </>
   )

@@ -1,8 +1,3 @@
-import RotoImage from "../assets/services/roto1.jpg"
-import RotoVideo from "../assets/services/Roto.mp4"
-
-import PrepVideo from "../assets/services/prep.mp4"
-
 export const services = [
   {
     number: "01",
@@ -10,8 +5,6 @@ export const services = [
     description:
       "Precision rotoscoping including character, object, hair and complex roto, matte creation and detailed edge work.",
 
-    image: RotoImage,
-    video: RotoVideo,
   },
 
   {
@@ -20,7 +13,6 @@ export const services = [
     description:
       "Wire and object removal, clean plates, paint, cleanup, beauty cleanup and plate preparation.",
 
-    video: PrepVideo,
   },
 
   {
