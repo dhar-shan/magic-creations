@@ -1,4 +1,5 @@
-import PrepVideo_2 from "../assets/services/prep_02.mp4"
+import Roto_1 from "../assets/services/roto_01.mp4"
+import Roto_2 from "../assets/services/roto_02.mp4"
 import CompVideo from "../assets/services/comp_01.mp4"
 import PrepVideo from "../assets/services/prep_01.mp4"
 import vid3d_01 from "../assets/services/3D_01.mp4"
@@ -18,14 +19,22 @@ export const showreelVideos = [
 
   {
     id: 1,
-    category: "Prep",
-    title: "Plate Preparation",
+    category: "Roto",
+    title: "Rotoscoping",
     description: "Clean plate and object removal work.",
-    video: PrepVideo_2,
+    video: Roto_1,
   },
 
   {
     id: 2,
+    category: "Roto",
+    title: "Plate Preparation",
+    description: "Clean plate and object removal work.",
+    video: Roto_2,
+  },
+
+  {
+    id: 3,
     category: "Prep",
     title: "Object Removal",
     description: "Clean plate and object removal work.",
@@ -33,7 +42,7 @@ export const showreelVideos = [
   },
 
   {
-    id: 3,
+    id: 4,
     category: "Compositing",
     title: "CG Integration",
     description: "CG integration and final shot compositing.",
@@ -41,7 +50,7 @@ export const showreelVideos = [
   },
 
 {
-     id: 4,
+     id: 5,
      category: "3D",
      title: "3D Animation",
      description: "3D animation and modeling.",
@@ -49,7 +58,7 @@ export const showreelVideos = [
   },
 
   {
-    id: 5,
+    id: 6,
     category: "3D",
     title: "3D Motion Design",
     description: "3D motion design and animation.",
