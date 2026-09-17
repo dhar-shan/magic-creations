@@ -4,6 +4,9 @@ import CompVideo from "../assets/services/comp_01.mp4"
 import PrepVideo from "../assets/services/prep_01.mp4"
 import vid3d_01 from "../assets/services/3D_01.mp4"
 import vid3d_02 from "../assets/services/3D_02.mp4"
+import AI_01 from "../assets/services/AI_01.mp4"
+import AI_02 from "../assets/services/AI_02.mp4"
+import AI_03 from "../assets/services/AI_03.mp4"
 
 export const showreelCategories = [
   "All",
@@ -63,5 +66,27 @@ export const showreelVideos = [
     title: "3D Motion Design",
     description: "3D motion design and animation.",
     video: vid3d_02,
+  },
+
+  {
+    id: 7,
+    category: "AI",
+    title: "AI Generated Content",
+    description: "AI generated content and effects.",
+    video: AI_01,
+  },
+  {
+    id: 8,
+    category: "AI",
+    title: "AI Enhanced Effects",
+    description: "AI enhanced effects and animations.",
+    video: AI_02,
+  },
+  {
+    id: 9,
+    category: "AI",
+    title: "AI Character Animation",
+    description: "AI character animation and rigging.",
+    video: AI_03,
   }
 ]
